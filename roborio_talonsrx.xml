@@ -1,0 +1,9 @@
+<library path="roborio_talonsrx">
+    <class name="roborio_bridge/RoboRIOTalonSRX"
+        type="RoboRIOTalonSRX"
+        base_class_type="hardware_interface::ActuatorInterface">
+        <description>
+            Hardware Interface for Differential Drive Arduino controller.
+        </description>
+    </class>
+</library>
