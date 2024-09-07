@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package messages.motor;
+
+enum MotorControlType {
+    CONTROL_OFF = 0;
+    CONTROL_VOLTAGE = 1;
+    CONTROL_PID_FF = 2;
+    CONTROL_EFFORT = 3;
+}
+
+message Motor_Control_Req {
+    optional MotorControlType control = 1;
+
+    optional int32 motor_id = 7;
+    
+    optional double voltage = 2;
+    
+    optional double position = 3;
+    optional double velocity = 4;
+    optional double acceleration = 5;
+    
+    optional double effort = 6;
+}
+
+message Motor_Control_Rep {
+    bool success = 1;
+}

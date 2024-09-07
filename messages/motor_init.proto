@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package messages.motor;
+
+enum MotorType {
+    Motor_NONE = 0;
+    Motor_TalonSRX = 1;
+    Motor_TalonFX = 2;
+    Motor_SparkMax = 3;
+}
+
+message Motor_Init_Req {
+    optional MotorType motor_type = 1;
+    optional int32 can_id = 2;
+    optional string can_bus = 3;
+    optional double p = 4;
+    optional double i = 5;
+    optional double d = 6;
+}
+
+message Motor_Init_Rep {
+    optional bool success = 1;
+    optional int32 motorIndex = 2;
+    optional string motor_topic = 3;
+}

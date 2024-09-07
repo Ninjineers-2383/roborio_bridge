@@ -11,6 +11,11 @@ find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
+
+# Protobuf
+include(FindProtobuf)
+find_package(Protobuf REQUIRED)
+
 # ZMQ
 find_package(PkgConfig)
 pkg_check_modules(PC_ZeroMQ QUIET zmq)
@@ -28,17 +33,21 @@ find_library(ZeroMQ_LIBRARY
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_library(roborio_talonsrx SHARED src/roborio_talonsrx.cpp)
+file(GLOB mesages_src CONFIGURE_DEPENDS "messages_include/*.pb.cc")
+
+add_library(roborio_talonsrx SHARED src/roborio_talonsrx.cpp ${mesages_src})
 
 target_include_directories(
   roborio_talonsrx
   PRIVATE
   include
+  messages_include
   PUBLIC
   ${ZeroMQ_INCLUDE_DIR}
+  ${PROTOBUF_INCLUDE_DIR}
 )
 
-target_link_libraries(roborio_talonsrx ${ZeroMQ_LIBRARY})
+target_link_libraries(roborio_talonsrx ${ZeroMQ_LIBRARY} ${PROTOBUF_LIBRARY})
 
 ament_target_dependencies(
   roborio_talonsrx

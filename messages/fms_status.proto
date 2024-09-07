@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package messages;
+
+enum Alliance {
+    ALLIANCE_NONE = 0;
+    ALLIANCE_RED = 1;
+    ALLIANCE_BLUE = 2;
+}
+
+enum Match_Type {
+    MATCH_TYPE_NONE = 0;
+    MATCH_TYPE_PRACTICE = 1;
+    MATCH_TYPE_QUALIFICATION = 2;
+    MATCH_TYPE_ELIMINATION = 3;
+}
+
+enum Driver_Station {
+    DS_NONE = 0;
+    DS_ONE = 1;
+    DS_TWO = 2;
+    DS_THREE = 3;
+}
+
+message FMS_Status {
+    optional Alliance alliance = 1;
+    optional Match_Type match_type = 2;
+    optional Driver_Station driver_station = 3;
+    optional double battery_volts = 4;
+    optional string event_name = 5;
+    optional string game_message = 6;
+    optional int32 match_numer = 7;
+    optional double match_seconds = 8;
+    optional int32 replay_number = 9;
+
+    optional bool is_ds_attached = 10;
+    optional bool is_fms_attached = 11;
+
+    optional bool is_enabled = 12;
+    optional bool is_disabled = 13;
+
+    optional bool is_auto = 14;
+    optional bool is_teleop = 15;
+    optional bool is_test = 16;
+    
+    optional bool is_e_stopped = 17;
+}

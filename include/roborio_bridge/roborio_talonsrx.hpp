@@ -59,7 +59,9 @@ namespace roborio_bridge
         rclcpp::Logger logger_;
 
         double position;
-        double command;
+        double velocity;
+        double acceleration;
+        double voltage_command;
     };
 }
 #endif /* ROBORIO_TALONSRX_HPP */
